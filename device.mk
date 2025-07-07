@@ -18,10 +18,10 @@ PRODUCT_PACKAGES += \
     android.hardware.boot@1.0-impl-1.2 
 
 PRODUCT_PACKAGES += \
-    bootctrl.ums9230
+    bootctrl.ums9230E
 
 PRODUCT_STATIC_BOOT_CONTROL_HAL := \
-    bootctrl.ums9230 \
+    bootctrl.ums9230E \
     libgptutils \
     libz \
     libcutils
