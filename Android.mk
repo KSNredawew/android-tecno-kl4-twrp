@@ -7,6 +7,6 @@
 
 LOCAL_PATH := $(call my-dir)
 
-ifeq ($(TARGET_DEVICE),tssi_arm64_tecno)
+ifeq ($(TARGET_DEVICE),KL4)
 include $(call all-subdir-makefiles,$(LOCAL_PATH))
 endif
