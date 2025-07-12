@@ -36,8 +36,6 @@ PRODUCT_PACKAGES += \
 
  # Dynamic Partition
 PRODUCT_USE_DYNAMIC_PARTITIONS := true   
-
-TW_LOAD_VENDOR_MODULES := $(shell echo \"$(shell ls $(DEVICE_PATH)/recovery/root/lib/modules)\")
  
 # Boot control HAL
 PRODUCT_PACKAGES += \
