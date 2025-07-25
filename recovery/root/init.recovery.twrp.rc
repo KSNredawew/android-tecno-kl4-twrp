@@ -1,3 +1,3 @@
-# Load touchscreen modules
 on boot
-    exec /etc/twrp.recovery.modules.sh
+    # Load touchscreen modules
+    exec /system/bin/load_touch_modules.sh
