@@ -13,20 +13,18 @@ ALLOW_MISSING_DEPENDENCIES := true
 # A/B
 AB_OTA_UPDATER := true
 AB_OTA_PARTITIONS += \
-    vbmeta \
-    vbmeta_system \
-    vbmeta_vendor \
-    dtbo \
-    boot \
-    system \
-    system_ext \
-    vendor \
-    product \
-    vendor_dlkm
+     vbmeta \
+     vbmeta_system \
+     vbmeta_vendor \
+     dtbo \
+     boot \
+     system \
+     system_ext \
+     vendor \
+     product \
+     vendor_dlkm
 
-
-
-#vendor_boot configuration
+# Vendor_boot configuration
 TARGET_NO_RECOVERY := true
 BOARD_BOOT_HEADER_VERSION := 4
 TARGET_NO_KERNEL := true
@@ -36,37 +34,34 @@ BOARD_MOVE_RECOVERY_RESOURCES_TO_VENDOR_BOOT := true
 BOARD_MOVE_GSI_AVB_KEYS_TO_VENDOR_BOOT := true
 BOARD_RAMDISK_USE_LZ4 := true
 
-#TARGET_USES_UEFI := true
 # Assert
 TARGET_OTA_ASSERT_DEVICE := tecno-KL4
-
 
 # Architecture
 TARGET_ARCH := arm64
 TARGET_ARCH_VARIANT := armv8-a
 TARGET_CPU_ABI := arm64-v8a
-TARGET_CPU_ABI2 := 
+TARGET_CPU_ABI2 :=
 TARGET_CPU_VARIANT := generic
-TARGET_CPU_VARIANT_RUNTIME := cortex-a76
+TARGET_CPU_VARIANT_RUNTIME := cortex-a75
 
 TARGET_2ND_ARCH := arm
 TARGET_2ND_ARCH_VARIANT := armv7-a-neon
 TARGET_2ND_CPU_ABI := armeabi-v7a
 TARGET_2ND_CPU_ABI2 := armeabi
 TARGET_2ND_CPU_VARIANT := generic
-TARGET_2ND_CPU_VARIANT_RUNTIME := cortex-a76
+TARGET_2ND_CPU_VARIANT_RUNTIME := cortex-a55
 
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := tecno-KL4
 TARGET_NO_BOOTLOADER := true
 
 # Display
-TARGET_SCREEN_DENSITY := 400
+TARGET_SCREEN_DENSITY := 240 # (DPI ~263, используем ближайшее стандартное значение)
 
-# MKBOOTIMG from original vendor_boot 
+# MKBOOTIMG from original vendor_boot
 BOARD_VENDOR_BASE := 0x00000000
-# TODO: remove "androidboot.." from kernel cmdline after verification
-BOARD_VENDOR_CMDLINE :=  console=ttyS1,115200n8 buildvariant=user
+BOARD_VENDOR_CMDLINE := console=ttyS1,115200n8 buildvariant=user
 BOARD_KERNEL_PAGESIZE := 4096
 BOARD_RAMDISK_OFFSET := 0x05400000
 BOARD_KERNEL_OFFSET := 0x00008000
@@ -82,19 +77,16 @@ BOARD_PREBUILT_DTBIMAGE := $(DEVICE_PATH)/prebuilt/dtb.img
 BOARD_MKBOOTIMG_ARGS += --dtb $(TARGET_PREBUILT_DTB)
 TARGET_PREBUILT_DTB := $(DEVICE_PATH)/prebuilt/dtb.img
 
-
 # Partitions
 BOARD_FLASH_BLOCK_SIZE := 262144 # (BOARD_KERNEL_PAGESIZE * 64)
+# Проверьте эти значения с помощью 'getprop ro.boot.partition_size.<partition_name>'
 BOARD_BOOTIMAGE_PARTITION_SIZE := 104857600
+BOARD_VENDOR_BOOTIMAGE_PARTITION_SIZE := 104857600
 BOARD_HAS_LARGE_FILESYSTEM := true
-BOARD_VENDOR_BOOTIMAGE_PARTITION_SIZE := $(BOARD_BOOTIMAGE_PARTITION_SIZE)
-BOARD_SUPER_PARTITION_SIZE := 9126805504 # TODO: Fix hardcoded value
+BOARD_SUPER_PARTITION_SIZE := 9126805504 # Проверьте это значение
 BOARD_SUPER_PARTITION_GROUPS := group_unisoc
 BOARD_GROUP_UNISOC_PARTITION_LIST := system system_ext product vendor vendor_dlkm
-BOARD_GROUP_UNISOC_SIZE := 9122611200 # TODO: Fix hardcoded value
-# https://source.android.com/devices/bootloader/partitions/generic-boot#combinations, "Launch device without recovery partition":
-
-
+BOARD_GROUP_UNISOC_SIZE := 9122611200 # Проверьте это значение
 
 # Map partitions type
 BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE := f2fs
@@ -142,24 +134,19 @@ RECOVERY_SDCARD_ON_DATA := true
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /dev/block/loop%d
 TARGET_USES_MKE2FS := true
 
-
 # Crypto
 TW_INCLUDE_CRYPTO := true
 TW_INCLUDE_CRYPTO_FBE := true
 BOARD_USES_METADATA_PARTITION := true
 TW_USE_FSCRYPT_POLICY := 2
-#BOARD_FORCE_ENCRYPT := false
-#TW_PREPARE_DATA_MEDIA_EARLY := true
 
 # Hack: prevent anti rollback
-
 PLATFORM_SECURITY_PATCH := 2099-12-31
 VENDOR_SECURITY_PATCH := 2099-12-31
 PLATFORM_VERSION := 99.87.36
 PLATFORM_VERSION_LAST_STABLE := $(PLATFORM_VERSION)
 
 # TWRP Configuration
-
 TW_HAS_DOWNLOAD_MODE := true
 TW_THEME := portrait_hdpi
 TW_EXTRA_LANGUAGES := true
@@ -168,13 +155,12 @@ TW_INPUT_BLACKLIST := "hbtp_vm"
 TW_USE_TOOLBOX := true
 TW_BRIGHTNESS_PATH := "/sys/devices/platform/soc/soc:ap-ahb/31100000.dsi/31100000.dsi.0/display/panel0/sprd_backlight/brightness"
 TW_MAX_BRIGHTNESS := 2047
-#TW_VIBRATION_PATH := 
+#TW_VIBRATION_PATH := "/sys/class/timed_output/vibrator/enable" # Проверьте этот путь
 #TW_CUSTOM_VIBRATION_PATH :=
 TW_CUSTOM_CPU_TEMP_PATH := /sys/class/thermal/thermal_zone0/temp
 TW_DEFAULT_BRIGHTNESS := 1200
 
-
-#MAINTENER
+# MAINTAINER
 TW_DEVICE_VERSION := KL4-KSN
 
 # INCLUDE TWRP CONFIG
