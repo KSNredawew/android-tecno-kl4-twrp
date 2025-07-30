@@ -22,33 +22,23 @@ AB_OTA_POSTINSTALL_CONFIG += \
     FILESYSTEM_TYPE_system=ext4 \
     POSTINSTALL_OPTIONAL_system=true
 
-# Boot control HAL
-PRODUCT_PACKAGES += \
-    vendor.sprd.hardware.boot@1.2-service
-
 # Health HAL
 PRODUCT_PACKAGES += \
-    android.hardware.health@2.0-impl \
-    android.hardware.health@2.1-impl 
+    android.hardware.boot@1.0-impl-1.2
 
  # Dynamic Partition
 PRODUCT_USE_DYNAMIC_PARTITIONS := true   
  
 # Boot control HAL
 PRODUCT_PACKAGES += \
-    android.hardware.boot@1.0-impl \
-    android.hardware.boot@1.0-impl-recovery \
-    android.hardware.boot@1.2-impl \
-    android.hardware.boot@1.2-impl.recovery \
-    vendor.sprd.hardware.boot@1.2 \
-    vendor.sprd.hardware.boot@1.2-impl.recovery
+    android.hardware.health@2.0-impl-default
 
 PRODUCT_PACKAGES += \
     bootctrl.recovery \
     unisoc.bootctrl
 
 PRODUCT_PACKAGES += \
-    bootctrl.ums9230
+    bootctrl.ums9230E
     
 ENABLE_VIRTUAL_AB := true
 $(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota/launch_with_vendor_ramdisk.mk)
