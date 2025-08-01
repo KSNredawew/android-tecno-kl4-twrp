@@ -1,0 +1,55 @@
+# TWRP Configuration Flags by KSN
+# Mount point          fstype    device                                 flags
+
+## Boot & Critical Partitions
+/boot                 emmc      /dev/block/by-name/boot                 flags=display="Boot";backup=1;flashimg=1;slotselect
+/dtbo                 emmc      /dev/block/by-name/dtbo                 flags=display="DTBO";backup=1;flashimg=1;slotselect
+/dtb                  emmc      /dev/block/by-name/dtb                  flags=display="DTB";backup=1;flashimg=1;slotselect
+/vendor_boot          emmc      /dev/block/by-name/vendor_boot          flags=display="Vendor Boot";backup=1;flashimg=1;slotselect
+
+## VBmeta Partitions
+/vbmeta               emmc      /dev/block/by-name/vbmeta               flags=display="VBMeta";backup=1;flashimg=1;slotselect
+/vbmeta_system        emmc      /dev/block/by-name/vbmeta_system        flags=display="VBMeta System";backup=1;flashimg=1;slotselect
+/vbmeta_vendor        emmc      /dev/block/by-name/vbmeta_vendor        flags=display="VBMeta Vendor";backup=1;flashimg=1;slotselect
+/vbmeta_odm           emmc      /dev/block/by-name/vbmeta_odm           flags=display="VBMeta ODM";backup=1;flashimg=1;slotselect
+/vbmeta_product       emmc      /dev/block/by-name/vbmeta_product       flags=display="VBMeta Product";backup=1;flashimg=1;slotselect
+
+## Firmware & Misc
+/misc                 emmc      /dev/block/by-name/misc                 flags=display="Misc"
+/persist              emmc      /dev/block/by-name/persist              flags=display="Persist";flashimg=1
+/logo                 emmc      /dev/block/by-name/logo                 flags=display="Logo"
+/fbootlogo            emmc      /dev/block/by-name/fbootlogo            flags=display="Fastboot Logo"
+/tranfs               ext4      /dev/block/by-name/tranfs               flags=display="TranFS"
+/miscdata             emmc      /dev/block/by-name/miscdata             flags=display="MiscData"
+
+## Dynamic Partitions (A/B Slots)
+/system_image         emmc      /dev/block/mapper/system_a              flags=display="System (A)";backup=1;flashimg=1
+/system_image         emmc      /dev/block/mapper/system_b              flags=display="System (B)";backup=1;flashimg=1
+/vendor_image         emmc      /dev/block/mapper/vendor_a              flags=display="Vendor (A)";backup=1;flashimg=1
+/vendor_image         emmc      /dev/block/mapper/vendor_b              flags=display="Vendor (B)";backup=1;flashimg=1
+/product_image        emmc      /dev/block/mapper/product_a             flags=display="Product (A)";backup=1;flashimg=1
+/product_image        emmc      /dev/block/mapper/product_b             flags=display="Product (B)";backup=1;flashimg=1
+/system_ext_image     emmc      /dev/block/mapper/system_ext_a          flags=display="SystemExt (A)";backup=1;flashimg=1
+/system_ext_image     emmc      /dev/block/mapper/system_ext_b          flags=display="SystemExt (B)";backup=1;flashimg=1
+/vendor_dlkm_image    emmc      /dev/block/mapper/vendor_dlkm_a         flags=display="Vendor DLKM (A)";backup=1;flashimg=1
+/vendor_dlkm_image    emmc      /dev/block/mapper/vendor_dlkm_b         flags=display="Vendor DLKM (B)";backup=1;flashimg=1
+
+## EROFS Mount Points
+/system_errofs        auto      /dev/block/dm-0                         flags=display="System (EROFS)";wipeingui
+/system_ext_errofs    auto      /dev/block/dm-1                         flags=display="SystemExt (EROFS)";wipeingui
+/vendor_errofs        auto      /dev/block/dm-2                         flags=display="Vendor (EROFS)";wipeingui
+/product_errofs       auto      /dev/block/dm-3                         flags=display="Product (EROFS)";wipeingui
+
+## Userdata & Metadata
+/userdata             auto      /dev/block/by-name/userdata             flags=display="UserData";backup=1;wipeingui
+/super                emmc      /dev/block/by-name/super                flags=display="Super";flashimg=1
+/metadata             ext4      /dev/block/by-name/metadata             flags=display="Metadata"
+
+## Removable Storage
+/external_sd          auto      /dev/block/mmcblk1p1                    flags=display="SD Card";storage;wipeingui;removable
+/usbotg               auto      /dev/block/sda1                         flags=display="USB OTG";storage;wipeingui;removable
+
+## Special Partitions
+/spl                  emmc      /dev/block/mmcblk0boot0                 flags=display="SPL";slotselect
+/uboot                emmc      /dev/block/by-name/uboot                flags=display="U-Boot";slotselect
+/recovery             emmc      /dev/block/by-name/recovery             flags=display="Recovery";backup=1;flashimg=1
